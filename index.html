@@ -5,7 +5,15 @@
   <!-- [업체명 교체] 확정된 새 상호로 '브랜드명 홈케어'를 일괄 변경하세요. -->
   <title>대구 종합 홈케어 전문 | 브랜드명 홈케어</title>
   <meta name="description" content="대구·경북 입주청소, 줄눈, 탄성코팅, 상판·나노코팅을 한 번에 제공하는 종합 홈케어 전문업체입니다."><meta name="robots" content="index,follow"><meta name="theme-color" content="#0c2844">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="homecare.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="homecare.css?v=20260921-2">
+  <!-- 쇼룸 사진은 원본 비율과 관계없이 모두 같은 크기의 한 칸만 사용합니다. -->
+  <style>
+    .gallery-rail{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-rows:96px!important;align-content:start!important;align-items:start!important}
+    .gallery-rail>.gallery-thumb{grid-column:auto!important;grid-row:auto!important;align-self:start!important;width:100%!important;height:96px!important;min-width:0!important;min-height:0!important;max-height:96px!important;aspect-ratio:auto!important;overflow:hidden!important}
+    .gallery-thumb>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-height:100%!important;object-fit:cover!important;object-position:center!important}
+    @media(max-width:900px) and (min-width:601px){.gallery-rail{grid-auto-rows:88px!important}.gallery-rail>.gallery-thumb{height:88px!important;max-height:88px!important}}
+    @media(max-width:600px){.gallery-rail{display:flex!important;grid-auto-rows:none!important;align-items:flex-start!important}.gallery-rail>.gallery-thumb{flex:0 0 82px!important;width:82px!important;height:82px!important;max-height:82px!important}}
+  </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"브랜드명 홈케어","description":"대구·경북 입주청소, 줄눈, 탄성코팅, 나노코팅 종합 홈케어","telephone":"010-9593-7665","areaServed":["대구광역시","경상북도"],"openingHours":"Mo-Su 09:00-20:00","priceRange":"₩₩"}</script>
 </head>
 <body>
