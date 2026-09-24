@@ -13,3 +13,10 @@
 .portfolio{overflow:hidden}.gallery-showroom{height:610px;min-height:0;overflow:hidden;align-items:stretch}.gallery-feature{position:relative;height:100%;min-width:0;min-height:0}.gallery-feature img{position:absolute;inset:0}.gallery-rail-wrap{height:100%;min-height:0;overflow:hidden}.gallery-rail{min-height:0;max-height:100%;overscroll-behavior:contain}
 @media(max-width:900px) and (min-width:601px){.gallery-showroom{height:560px;grid-template-columns:minmax(0,1.45fr) minmax(250px,.75fr)}}
 @media(max-width:600px){.portfolio{overflow:visible}.gallery-showroom{height:auto;min-height:0;overflow:visible}.gallery-feature{height:auto;aspect-ratio:4/3}.gallery-rail-wrap{height:auto;overflow:visible}.gallery-rail{max-height:none}}
+
+/* 시공사진 썸네일 크기 통일: 원본 사진이 세로/가로여도 같은 프레임으로 잘라 표시 */
+.gallery-rail{align-content:start;grid-auto-rows:96px}
+.gallery-thumb{width:100%;height:96px;min-height:96px;aspect-ratio:auto}
+.gallery-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+@media(max-width:900px) and (min-width:601px){.gallery-rail{grid-auto-rows:88px}.gallery-thumb{height:88px;min-height:88px}}
+@media(max-width:600px){.gallery-rail{grid-auto-rows:none;align-items:start}.gallery-thumb{flex:0 0 82px;width:82px;height:82px;min-height:82px}}
