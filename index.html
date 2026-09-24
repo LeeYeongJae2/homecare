@@ -28,7 +28,16 @@
     .reviews .eyebrow{color:var(--blue)}
     .review-top h2 em{color:var(--blue)}
     .review-controls button{border-color:rgba(12,40,68,.22);color:var(--navy)}
-    .review-track article{background:#f3f6f8;border:1px solid #d8e1e7;border-top:3px solid var(--blue);box-shadow:0 14px 34px rgba(12,40,68,.09)}
+    /* 후기 카드는 실제 플랫폼 후기처럼 프로필·별점·본문 중심으로 구성합니다. */
+    .review-track article{position:relative;justify-content:flex-start!important;gap:18px;min-height:330px!important;padding:30px!important;background:#fff!important;border:1px solid #18a8ae!important;border-top:1px solid #18a8ae!important;border-radius:22px;box-shadow:0 16px 38px rgba(12,40,68,.08)!important}
+    .review-track article>div:last-child{order:0;position:relative;min-height:52px;padding:4px 42px 4px 62px;display:flex;flex-direction:column;justify-content:center}
+    .review-track article>div:last-child:before{content:"✓";position:absolute;left:0;top:0;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:20px;font-weight:800}
+    .review-track article>div:last-child:after{content:"•••";position:absolute;right:0;top:4px;color:#a5b0b8;font-size:15px;letter-spacing:2px}
+    .review-track article>div:last-child b{font-size:15px;color:var(--ink);line-height:1.35}
+    .review-track article>div:last-child small{margin-top:3px!important;color:#87939c!important;font-size:12px}
+    .review-track .stars{order:1;color:#00a8a8!important;letter-spacing:3px;font-size:16px;padding-top:3px}
+    .review-track .stars:after{content:" 5.0";color:#758794;font-size:11px;letter-spacing:0;margin-left:4px;vertical-align:1px}
+    .review-track article>p{order:2;margin:0!important;font-family:Pretendard,"Noto Sans KR",sans-serif!important;font-size:15px!important;line-height:1.85!important;color:#354854}
     .review-status{color:var(--muted)}
     .contact{background:#f7f4ee}
     .care-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
@@ -49,7 +58,7 @@
     .care-card b{align-self:flex-start;padding:8px 12px;background:var(--navy);color:#fff;font-size:11px;letter-spacing:.2px}
     .care-guide-note{margin:24px 0 0;padding:19px 22px;border-left:3px solid var(--blue);background:#eef5f9;color:#536573;font-size:14px}
     .care-guide-note strong{color:var(--navy)}
-    @media(max-width:600px){.header .brand-logo{height:36px!important;max-width:140px!important}.footer .brand-logo{height:46px!important;max-width:180px!important}.contact-phone{margin-top:18px;padding-top:16px}.contact-phone .contact-phone-number{font-size:23px}}
+    @media(max-width:600px){.header .brand-logo{height:36px!important;max-width:140px!important}.footer .brand-logo{height:46px!important;max-width:180px!important}.review-track article{min-height:310px!important;padding:24px 21px!important;border-radius:18px}.review-track article>div:last-child{padding-left:56px}.review-track article>div:last-child:before{width:46px;height:46px}.contact-phone{margin-top:18px;padding-top:16px}.contact-phone .contact-phone-number{font-size:23px}}
     @media(max-width:900px){.care-guide{grid-template-columns:1fr}.care-card{grid-template-columns:minmax(220px,.8fr) 1.2fr}}
     @media(max-width:600px){.care-guide{gap:14px}.care-card{display:block;min-height:0}.care-card-media{height:215px;min-height:0}.care-card-body{padding:25px 20px}.care-card h3{font-size:23px}.care-card:hover{transform:none}.care-guide-note{margin-top:18px;padding:17px 18px}}
     @media(max-width:900px) and (min-width:601px){.gallery-rail{grid-auto-rows:88px!important}.gallery-rail>.gallery-thumb{height:88px!important;max-height:88px!important}}
