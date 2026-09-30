@@ -75,4 +75,60 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&lightbox.cl
 
 const form=document.querySelector('#estimateForm');
 const toast=document.querySelector('#toast');
-form.addEventListener('submit',event=>{event.preventDefault();toast.textContent='상담 폼 화면이 정상 작동합니다. 실제 전송 연동이 필요합니다.';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3500)});
+const formStatus=document.createElement('p');
+formStatus.setAttribute('role','status');
+formStatus.setAttribute('aria-live','polite');
+formStatus.style.cssText='margin:14px 0 0;line-height:1.6;font-size:14px';
+form.appendChild(formStatus);
+let estimateSending=false;
+form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(estimateSending || !form.reportValidity())return;
+  const data=new FormData(form);
+  const params={
+    name:String(data.get('name')||'').trim(),
+    phone:String(data.get('phone')||'').trim(),
+    area:String(data.get('area')||'').trim(),
+    service:data.getAll('service').join(', ')||'상담 후 결정',
+    message:String(data.get('message')||'').trim()
+  };
+  if(!params.name || !params.phone || !params.area){
+    formStatus.textContent='성함, 연락처, 시공 지역을 입력해주세요.';
+    return;
+  }
+  const submit=form.querySelector('button[type="submit"]');
+  const original=submit.innerHTML;
+  estimateSending=true;
+  submit.disabled=true;
+  submit.textContent='문의 전송 중…';
+  form.setAttribute('aria-busy','true');
+  formStatus.textContent='문의 내용을 전송하고 있습니다.';
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),20000);
+  try{
+    const response=await fetch('https://api.emailjs.com/api/v1.0/email/send',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        service_id:'service_3n2iayh',
+        template_id:'template_5f28t9o',
+        user_id:'7Lc7nsCsxT6p6Ns-B',
+        template_params:params
+      }),
+      signal:controller.signal
+    });
+    if(!response.ok)throw new Error('Email delivery request failed');
+    formStatus.textContent='견적 문의가 접수되었습니다. 확인 후 입력하신 연락처로 안내드리겠습니다.';
+    form.reset();
+  }catch(error){
+    formStatus.textContent=error.name==='AbortError'
+      ?'전송 결과를 확인하지 못했습니다. 중복 접수를 피하려면 010-5790-4009로 확인해주세요.'
+      :'문의 전송에 실패했습니다. 입력 내용은 유지됩니다. 잠시 후 다시 시도하거나 010-5790-4009로 연락해주세요.';
+  }finally{
+    clearTimeout(timeout);
+    estimateSending=false;
+    submit.disabled=false;
+    submit.innerHTML=original;
+    form.removeAttribute('aria-busy');
+  }
+});
