@@ -14,7 +14,9 @@
     .footer .brand-logo{display:block!important;width:auto!important;height:58px!important;max-width:220px!important;object-fit:contain!important;filter:brightness(0) invert(1)}
     .gallery-rail{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-rows:96px!important;align-content:start!important;align-items:start!important}
     .gallery-rail>.gallery-thumb{grid-column:auto!important;grid-row:auto!important;align-self:start!important;width:100%!important;height:96px!important;min-width:0!important;min-height:0!important;max-height:96px!important;aspect-ratio:auto!important;overflow:hidden!important}
-    .gallery-thumb>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-height:100%!important;object-fit:cover!important;object-position:center!important}
+    /* 쇼룸 사진은 원본의 세로·가로 비율과 관계없이 각 프레임을 완전히 채웁니다. */
+    .gallery-feature>#galleryFeatureImage{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center!important}
+    .gallery-thumb>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center!important}
     .contact-phone{margin-top:22px;padding-top:19px;border-top:1px solid rgba(12,40,68,.14)}
     .contact-phone span{display:block;font-size:12px;color:var(--muted);margin-bottom:2px}
     .contact-phone .contact-phone-number{display:block;color:var(--navy);font-size:25px;font-weight:800;line-height:1.35;letter-spacing:.2px}
