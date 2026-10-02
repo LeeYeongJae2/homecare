@@ -74,11 +74,31 @@ lightbox.addEventListener('click',event=>{if(event.target===lightbox)closeLightb
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&lightbox.classList.contains('open'))closeLightbox()});
 
 const form=document.querySelector('#estimateForm');
-const toast=document.querySelector('#toast');
-const formStatus=document.createElement('p');
+const formStatus=document.createElement('div');
 formStatus.setAttribute('role','status');
 formStatus.setAttribute('aria-live','polite');
-formStatus.style.cssText='margin:14px 0 0;line-height:1.6;font-size:14px';
+formStatus.className='estimate-status';
+formStatus.tabIndex=-1;
+formStatus.hidden=true;
+function showEstimateStatus(state,title,message,focus=false){
+  formStatus.className='estimate-status is-'+state;
+  formStatus.hidden=false;
+  const icon=document.createElement('span');
+  icon.className='estimate-status-icon';
+  icon.setAttribute('aria-hidden','true');
+  icon.textContent=state==='success'?'✓':state==='sending'?'…':'!';
+  const heading=document.createElement('strong');
+  heading.textContent=title;
+  const detail=document.createElement('p');
+  detail.textContent=message;
+  const copy=document.createElement('div');
+  copy.append(heading,detail);
+  formStatus.replaceChildren(icon,copy);
+  if(focus){
+    formStatus.focus({preventScroll:true});
+    formStatus.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});
+  }
+}
 form.appendChild(formStatus);
 let estimateSending=false;
 form.addEventListener('submit',async event=>{
@@ -93,7 +113,7 @@ form.addEventListener('submit',async event=>{
     message:String(data.get('message')||'').trim()
   };
   if(!params.name || !params.phone || !params.area){
-    formStatus.textContent='성함, 연락처, 시공 지역을 입력해주세요.';
+    showEstimateStatus('error','입력 내용을 확인해주세요','성함, 연락처, 시공 지역을 입력해주세요.',true);
     return;
   }
   const submit=form.querySelector('button[type="submit"]');
@@ -102,7 +122,7 @@ form.addEventListener('submit',async event=>{
   submit.disabled=true;
   submit.textContent='문의 전송 중…';
   form.setAttribute('aria-busy','true');
-  formStatus.textContent='문의 내용을 전송하고 있습니다.';
+  showEstimateStatus('sending','문의 전송 중입니다','잠시만 기다려주세요.');
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),20000);
   try{
@@ -118,12 +138,12 @@ form.addEventListener('submit',async event=>{
       signal:controller.signal
     });
     if(!response.ok)throw new Error('Email delivery request failed');
-    formStatus.textContent='견적 문의가 접수되었습니다. 확인 후 입력하신 연락처로 안내드리겠습니다.';
+    showEstimateStatus('success','견적 문의가 접수되었습니다!','정상적으로 발송되었습니다. 확인 후 입력하신 연락처로 안내드리겠습니다.',true);
     form.reset();
   }catch(error){
-    formStatus.textContent=error.name==='AbortError'
+    showEstimateStatus('error',error.name==='AbortError'?'전송 결과 확인이 필요합니다':'문의가 발송되지 않았습니다',error.name==='AbortError'
       ?'전송 결과를 확인하지 못했습니다. 중복 접수를 피하려면 010-5790-4009로 확인해주세요.'
-      :'문의 전송에 실패했습니다. 입력 내용은 유지됩니다. 잠시 후 다시 시도하거나 010-5790-4009로 연락해주세요.';
+      :'문의 전송에 실패했습니다. 입력 내용은 유지됩니다. 잠시 후 다시 시도하거나 010-5790-4009로 연락해주세요.',true);
   }finally{
     clearTimeout(timeout);
     estimateSending=false;
