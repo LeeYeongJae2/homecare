@@ -33,3 +33,7 @@
 .estimate-status.is-sending{background:#f3f6f8;border-color:#c7d8e5}
 .estimate-form button:disabled{opacity:.7;cursor:wait}
 @media(max-width:600px){.estimate-status{gap:12px;padding:20px 16px;margin-top:20px}.estimate-status-icon{flex-basis:36px;height:36px;font-size:24px}.estimate-status strong{font-size:20px}.estimate-status p{font-size:15px}}
+
+/* 확장된 출장 지역 문구가 작은 화면에서도 한 줄에 들어가도록 조정 */
+@media(max-width:600px){.trust-list li:last-child strong{font-size:13px}}
+@media(max-width:360px){.trust-list li:last-child strong{font-size:12px}}
