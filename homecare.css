@@ -57,3 +57,18 @@
 
 /* 함께 예약하는 공정 수에 따른 패키지 할인 안내 */
 .package-discount{padding:22px;margin:0 0 24px;background:#edf5fc;border-left:3px solid var(--blue);text-align:left}.package-discount strong{display:block;color:var(--navy);font-size:23px;line-height:1.5;letter-spacing:-.6px;word-break:keep-all}.package-discount p{margin:10px 0 12px;color:#536573;font-size:14px;line-height:1.7;word-break:keep-all}.package-discount a{display:inline-block;color:var(--blue);font-size:14px;font-weight:700;line-height:1.7;text-decoration:underline;text-underline-offset:3px}.package-discount a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}@media(max-width:600px){.package-discount{padding:18px 16px}.package-discount strong{font-size:21px}.package-discount a{font-size:13px}}
+
+/* 첫 화면 전화 상담 및 인접 섹션 배경 구분 */
+.hero-actions{align-items:center;flex-wrap:wrap}
+.hero-phone{display:flex;flex-direction:column;justify-content:center;gap:3px;min-height:54px;padding:0 6px;color:var(--navy);text-decoration:none}
+.hero-phone span{font-size:13px;font-weight:600;color:#536573}
+.hero-phone strong{font-size:21px;font-weight:800;line-height:1.35;letter-spacing:.2px;white-space:nowrap}
+.hero-phone:hover strong{text-decoration:underline;text-underline-offset:4px}
+.hero-phone:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
+#services{background:#fff}
+#portfolio{background:#edf4fa;border-top:1px solid #dce7ef}
+#reviews{background:#fff}
+#faq{background:#edf4fa;border-top:1px solid #dce7ef;border-bottom:1px solid #dce7ef}
+#faq .faq-list details>p{background:#fff}
+#contact{background:#f7f4ee}
+@media(max-width:600px){.hero-actions{align-items:stretch}.hero-phone{align-items:center;min-height:58px;padding:4px 0}.hero-phone strong{font-size:22px}}
