@@ -63,8 +63,6 @@
 .hero-phone{display:flex;flex-direction:column;justify-content:center;gap:3px;min-height:54px;padding:0 6px;color:var(--navy);text-decoration:none}
 .hero-phone span{font-size:13px;font-weight:600;color:#536573}
 .hero-phone strong{font-size:21px;font-weight:800;line-height:1.35;letter-spacing:.2px;white-space:nowrap}
-.hero-phone:hover strong{text-decoration:underline;text-underline-offset:4px}
-.hero-phone:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
 #services{background:#fff}
 #portfolio{background:#edf4fa;border-top:1px solid #dce7ef}
 #reviews{background:#fff}
