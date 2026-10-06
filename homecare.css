@@ -54,3 +54,6 @@
 .faq-list a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
 @media(max-width:900px){.faq-grid{grid-template-columns:1fr;gap:28px}}
 @media(max-width:600px){.faq-heading h2{font-size:30px}.faq-list summary{font-size:16px;padding-top:20px;padding-bottom:20px}.faq-list summary:after{top:21px}.faq-list details>p{font-size:14px;padding:16px;margin-bottom:20px}}
+
+/* 함께 예약하는 공정 수에 따른 패키지 할인 안내 */
+.package-discount{padding:22px;margin:0 0 24px;background:#edf5fc;border-left:3px solid var(--blue);text-align:left}.package-discount strong{display:block;color:var(--navy);font-size:23px;line-height:1.5;letter-spacing:-.6px;word-break:keep-all}.package-discount p{margin:10px 0 12px;color:#536573;font-size:14px;line-height:1.7;word-break:keep-all}.package-discount a{display:inline-block;color:var(--blue);font-size:14px;font-weight:700;line-height:1.7;text-decoration:underline;text-underline-offset:3px}.package-discount a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}@media(max-width:600px){.package-discount{padding:18px 16px}.package-discount strong{font-size:21px}.package-discount a{font-size:13px}}
